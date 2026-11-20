@@ -13,7 +13,8 @@ import {
   CheckCircle2,
   Clock,
   Sparkles,
-  AlertCircle
+  AlertCircle,
+  ScrollText
 } from 'lucide-react';
 
 export default function ProjectDashboard() {
@@ -146,6 +147,17 @@ export default function ProjectDashboard() {
           </div>
           <h3 className="font-semibold text-slate-900 group-hover:text-purple-600 transition">Mastery & Growth</h3>
           <p className="text-xs text-slate-500 mt-1">{mastery.length} Concepts Tracked</p>
+        </Link>
+
+        <Link
+          to={`/projects/${projectId}/papers`}
+          className="bg-white border border-slate-200 hover:border-amber-400 hover:shadow-md p-5 rounded-2xl transition group"
+        >
+          <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3 group-hover:bg-amber-600 group-hover:text-white transition">
+            <ScrollText className="w-5 h-5" />
+          </div>
+          <h3 className="font-semibold text-slate-900 group-hover:text-amber-700 transition">Question Papers</h3>
+          <p className="text-xs text-slate-500 mt-1">Generate exam questions as a PDF</p>
         </Link>
       </div>
 

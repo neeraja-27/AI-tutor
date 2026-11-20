@@ -41,6 +41,7 @@ chroma.sqlite3
 # Uploads & Ephemeral Files
 server/uploads/
 uploads/
+server/data/papers/
 
 # Environment variables
 .env

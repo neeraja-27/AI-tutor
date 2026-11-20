@@ -12,6 +12,7 @@ import ProjectDashboard from './pages/ProjectDashboard';
 import Materials from './pages/Materials';
 import TutorChat from './pages/TutorChat';
 import QuizPage from './pages/QuizPage';
+import QuestionPaperPage from './pages/QuestionPaperPage';
 import MasteryPage from './pages/MasteryPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import AdminDashboard from './pages/AdminDashboard';
@@ -43,6 +44,7 @@ export default function App() {
                 <Route path="/projects/:projectId/materials" element={<Materials />} />
                 <Route path="/projects/:projectId/tutor" element={<TutorChat />} />
                 <Route path="/projects/:projectId/quizzes" element={<QuizPage />} />
+                <Route path="/projects/:projectId/papers" element={<QuestionPaperPage />} />
                 <Route path="/projects/:projectId/mastery" element={<MasteryPage />} />
                 <Route path="/projects/:projectId/analytics" element={<AnalyticsPage />} />
               </Route>

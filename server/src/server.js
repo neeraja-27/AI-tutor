@@ -38,6 +38,7 @@ app.use('/api/projects', require('./routes/project.routes'));
 app.use('/api/materials', require('./routes/material.routes'));
 app.use('/api/tutor', require('./routes/tutor.routes'));
 app.use('/api/quizzes', require('./routes/quiz.routes'));
+app.use('/api/papers', require('./routes/paper.routes'));
 app.use('/api/mastery', require('./routes/mastery.routes'));
 app.use('/api/analytics', require('./routes/analytics.routes'));
 app.use('/api/admin', require('./routes/admin.routes'));

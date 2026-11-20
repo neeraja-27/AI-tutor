@@ -74,6 +74,18 @@ class QueryResponse(BaseModel):
     model: str
     evidence_found: bool
 
+class QuestionPaperRequest(BaseModel):
+    project_id: str
+    title: str = "Question Paper"
+    subject: Optional[str] = ""
+    topic: Optional[str] = ""
+    duration_minutes: int = 90
+    mcq_count: int = 5
+    short_count: int = 3
+    long_count: int = 2
+    difficulty: str = "mixed"
+    include_answer_key: bool = False
+
 
 # --- Endpoints ---
 @app.get("/health")
@@ -143,6 +155,38 @@ def query_rag(req: QueryRequest):
         return res
     except Exception as e:
         print(f"Query execution failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/papers/generate")
+def generate_question_paper(req: QuestionPaperRequest):
+    """
+    Write a question paper from the project's indexed materials and return it as a PDF.
+    Existing tutor, ingest, and quiz routes are unchanged.
+    """
+    try:
+        from rag.paper_generator import build_question_paper
+
+        return build_question_paper(
+            retriever=retriever,
+            vector_store=vector_store,
+            project_id=req.project_id,
+            title=req.title,
+            subject=req.subject or "",
+            topic=req.topic or "",
+            duration_minutes=req.duration_minutes,
+            mcq_count=req.mcq_count,
+            short_count=req.short_count,
+            long_count=req.long_count,
+            difficulty=req.difficulty,
+            include_answer_key=req.include_answer_key,
+            model_name=GROQ_MODEL,
+            api_key=os.getenv("GROQ_API_KEY"),
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        print(f"Question paper generation failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
